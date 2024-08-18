@@ -4,13 +4,17 @@ import { IoPeopleOutline } from 'react-icons/io5'; //
 import { MdOutlineLocalGasStation } from "react-icons/md";
 import { TbToolsKitchen2 } from "react-icons/tb";
 import { TbAutomaticGearbox } from "react-icons/tb";
+import { IoBedOutline } from "react-icons/io5";
 import styles from "./CamperDetails.module.css";
 const CamperDetails = ({ details }) => {
+    if (!details) {
+        return <p>No details available</p>
+    }
   return (
     <div className={styles["icon-main"]}>
       <button className={styles["icon-button"]}>
         <IoPeopleOutline className={styles.icon} />
-        <span>{details.adults} Adults</span>
+        <span>{details.adults} Adult</span>
       </button>
       <button className={styles["icon-button"]}>
         <MdOutlineLocalGasStation className={styles.icon} />
@@ -25,8 +29,8 @@ const CamperDetails = ({ details }) => {
         <span>{details.kitchen ? 'Kitchen' : 'No Kitchen'}</span>
       </button>
       <button className={styles["icon-button"]}>
-        <TbAutomaticGearbox className={styles.icon} />
-        <span>{details.shower ? 'Shower' : 'No Shower'}</span>
+        <IoBedOutline className={styles.icon} />
+        <span>{details.beds ? `${details.beds} Beds` : 'No Beds'}</span>
           </button>
           
     </div>
@@ -39,8 +43,11 @@ CamperDetails.propTypes = {
     engine: PropTypes.string.isRequired,
     transmission: PropTypes.string.isRequired,
     kitchen: PropTypes.bool.isRequired,
-    shower: PropTypes.bool.isRequired,
+    beds: PropTypes.number.isRequired,
+  
   }).isRequired,
+     
+   
 };  
 
 

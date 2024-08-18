@@ -17,27 +17,30 @@ const CatalogPage = () => {
   useEffect(() => {
     const fetchCatalogs = async () => {
       setIsLoading(true);
-        try {
-          console.log('Fetching catalogs with:', {
-      page: page,
-      limit: 4,
-      ...filters,
-    });
-       const response = await api.get('/booking-truck', {
-  params: {
-    page: page,
-    limit: 4,
-    ...filters,
-  },
-});
-       
-        setCatalogs((prevCatalogs) => [...prevCatalogs, ...response.data]);
-        setHasMore(response.data.length === 4);
+      try {
+        console.log('Fetching catalogs with:', {
+          page: page,
+          limit: 4,
+          ...filters,
+        });
+        const response = await api.get('/booking-truck', {
+          params: {
+            page: page,
+            limit: 4,
+            ...filters,
+          },
+        });
+        if (page === 1) {
+          setCatalogs(response.data);
+        } else {
+          setCatalogs((prevCatalogs) => [...prevCatalogs, ...response.data]);
+        } setHasMore(response.data.length == 4);
       } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-      setIsLoading(false);
-    };
+          console.error('Error fetching data:', error);
+        }
+        setIsLoading(false);
+      };
+        
 
     fetchCatalogs();
   }, [page, filters]);
@@ -47,7 +50,6 @@ const CatalogPage = () => {
   };
 
   const handleFilterChange = (newFilters) => {
-    setCatalogs([]);
     setPage(1);
     setFilters(newFilters);
   };
@@ -63,15 +65,15 @@ const CatalogPage = () => {
              price={catalog.price} 
              location={catalog.location}
              rating={catalog.rating} 
-            reviews={catalog.reviews.length.toString()} 
-            details={catalog.details}
+             reviews={catalog.reviews.length.toString()} 
+             details={catalog.details}
              onButtonClick={() => console.log(`Show more for ${catalog.name}`)} 
            />
         ))}
       </div>
       {isLoading && <p>Loading...</p>}
       {hasMore && !isLoading && (
-        <button onClick={handleLoadMore}>Load more</button>
+        <button className={styles.btn } onClick={handleLoadMore}>Load more</button>
       )}
     </div>
   );

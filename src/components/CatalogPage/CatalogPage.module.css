@@ -1,7 +1,23 @@
 
 .catalogs-list {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  
+  flex-direction: column;
+  /* justify-content: space-around; */
+   align-items: center;
+  /* justify-content: center; */
+}
+
+.btn {
+width: 145px;
+height: 56px;
+padding: 16px 32px 16px 32px;
+gap: 10px;
+border-radius: 50px; 
+border: 1px solid #47546733;
+opacity: 1;
+margin: 50px auto 50px auto;
+display: flex;
+justify-content: center;
+align-items: center;
+
 }
