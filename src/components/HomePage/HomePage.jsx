@@ -62,10 +62,10 @@ const Homepage = () => {
            <form className={styles.filterForm}>
               <div className={styles.formGroup}>
                 <label htmlFor="name">Name:</label>
-               <label htmlFor="name">Name:</label>
                <select
                 //  type="text"
-                 id="name"
+                  id="name"
+                  name="name"
                  value={filters.name}
                  onChange={handleFilterChange}
                ><option value="">Select Name</option>
@@ -78,7 +78,8 @@ const Homepage = () => {
                <label htmlFor="location">Location:</label>
                <select
                 //  type="text"
-                 id="location"
+                  id="location"
+                  name="location"
                  value={filters.location}
                  onChange={handleFilterChange}
                ><option value="">Select Location</option>
